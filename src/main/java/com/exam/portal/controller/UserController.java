@@ -1,11 +1,59 @@
 package com.exam.portal.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.exam.portal.entity.RoleEntity;
+import com.exam.portal.entity.UserEntity;
+import com.exam.portal.entity.UserRoleEntity;
+import com.exam.portal.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/")
+    public UserEntity create(@ModelAttribute UserEntity userEntity) throws Exception {
+
+        Set<UserRoleEntity> roles = new HashSet<>();
+        RoleEntity role = new RoleEntity();
+        role.setId(1224L);
+        role.setRoleName("ADMIN");
+
+        UserRoleEntity userRole = new UserRoleEntity();
+        System.out.println("COntroller UserEntity : "+userEntity);
+        userRole.setUserEntity(userEntity);
+        userRole.setRoleEntity(role);
+
+        roles.add(userRole);
+        System.out.println(" Controller Roles : "+roles);
+
+        return userService.createUser(userEntity,roles);
+    }
+
+    @GetMapping("/{username}")
+    public UserEntity getUserByUsername(@PathVariable("username") String username){
+        return this.userService.getUserByUsername(username);
+
+    }
+
+    @DeleteMapping("/{userId}")
+    public String deleteUser(@PathVariable("userId") Long userId){
+        this.userService.deleteUser(userId);
+        return "Deleted";
+    }
+
+    @GetMapping("/getAll")
+    public List<UserEntity> getAll(){
+        List<UserEntity> userEntities =userService.findAll();
+        return userEntities;
+    }
 
 
 }

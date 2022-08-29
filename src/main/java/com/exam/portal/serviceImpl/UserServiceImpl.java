@@ -8,6 +8,7 @@ import com.exam.portal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -30,13 +31,33 @@ public class UserServiceImpl implements UserService {
         {
             //userCreate
             for(UserRoleEntity ur:userRoleEntities){
+                System.out.println(" Service Ur : "+ur);
                 roleRepository.save(ur.getRoleEntity());
             }
-            userEntity.getUserRoleEntities().addAll(userRoleEntities);
-            local=this.userRepository.save(userEntity);
+//            userEntity.getUserRoleEntities().addAll(userRoleEntities);
+            userEntity.setUserRoleEntities(userRoleEntities);
+//            System.out.println("Service getUserRole : "+userEntity.setUserRoleEntities(userRoleEntities));
+            local=userRepository.save(userEntity);
 
         }
 
         return local;
     }
+
+    @Override
+    public UserEntity getUserByUsername(String username) {
+        return this.userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
+    }
+
+    @Override
+    public List<UserEntity> findAll() {
+        return userRepository.findAll();
+    }
+
+
 }

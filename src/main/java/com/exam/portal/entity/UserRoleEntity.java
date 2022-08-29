@@ -14,14 +14,18 @@ import javax.persistence.*;
 public class UserRoleEntity {
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy =GenerationType.AUTO)
     private Long id;
 
     //Relations
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity userEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private RoleEntity roleEntity;
 
+    public UserRoleEntity(UserEntity userEntity, RoleEntity roleEntity) {
+        this.userEntity = userEntity;
+        this.roleEntity = roleEntity;
+    }
 }

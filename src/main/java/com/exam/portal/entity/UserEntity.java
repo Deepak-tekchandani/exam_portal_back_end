@@ -17,7 +17,7 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "user_name")
@@ -38,6 +38,7 @@ public class UserEntity {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "profile")
     private String profile;
 
     @Column(name = "enable")
@@ -45,7 +46,7 @@ public class UserEntity {
 
     //Relations
 
-    @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "userEntity")
+    @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL , mappedBy = "userEntity")
     @JsonIgnore
     private Set<UserRoleEntity> userRoleEntities;
 
