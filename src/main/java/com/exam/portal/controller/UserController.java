@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/user")
 public class UserController {
 
@@ -19,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public UserEntity create(@ModelAttribute UserEntity userEntity) throws Exception {
+    public UserEntity create( UserEntity userEntity) throws Exception {
 
         Set<UserRoleEntity> roles = new HashSet<>();
         RoleEntity role = new RoleEntity();
