@@ -20,15 +20,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public UserEntity create( UserEntity userEntity) throws Exception {
+    public UserEntity create(@RequestBody UserEntity userEntity) throws Exception {
+
+        userEntity.setProfile("default.png");
 
         Set<UserRoleEntity> roles = new HashSet<>();
         RoleEntity role = new RoleEntity();
-        role.setId(1224L);
+        role.setId(114L);
         role.setRoleName("ADMIN");
 
         UserRoleEntity userRole = new UserRoleEntity();
-        System.out.println("COntroller UserEntity : "+userEntity);
+        System.out.println("Controller UserEntity : "+userEntity);
         userRole.setUserEntity(userEntity);
         userRole.setRoleEntity(role);
 
