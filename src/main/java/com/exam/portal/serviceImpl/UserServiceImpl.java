@@ -4,6 +4,7 @@ import com.exam.portal.entity.UserEntity;
 import com.exam.portal.entity.UserRoleEntity;
 import com.exam.portal.repository.RoleRepository;
 import com.exam.portal.repository.UserRepository;
+import com.exam.portal.security.helper.UserFoundException;
 import com.exam.portal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
         UserEntity local = this.userRepository.findByUsername(userEntity.getUsername());
         if (local!=null){
             System.out.println("User is Already there !!");
-            throw new Exception("User Already Present !!");
+            throw new UserFoundException();
         }else
         {
             //userCreate
