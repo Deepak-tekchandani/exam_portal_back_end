@@ -62,7 +62,7 @@ public class UserEntity implements UserDetails {
         this.userRoleEntities.forEach(userRoleEntity -> {
             set.add(new Authority(userRoleEntity.getRoleEntity().getRoleName()));
         });
-        return null;
+        return set;
     }
 
     @Override

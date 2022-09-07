@@ -1,5 +1,6 @@
 package com.exam.portal.security.controller;
 
+import com.exam.portal.entity.UserEntity;
 import com.exam.portal.security.JWTRequest;
 import com.exam.portal.security.JWTResponse;
 import com.exam.portal.security.UserDetailsServiceImpl;
@@ -12,13 +13,13 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.soap.SAAJResult;
+import java.security.Principal;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateController {
 
     @Autowired
@@ -40,7 +41,7 @@ public class AuthenticateController {
 
         }catch (UsernameNotFoundException e){
             e.printStackTrace();
-            throw new Exception("user not Found !! ");
+            throw new Exception("user not Found ! ");
         }
         /////////authenticate
 
@@ -62,4 +63,12 @@ public class AuthenticateController {
         }
 
     }
+
+    //Return the Details of Current User
+    @GetMapping("/current-user")
+    public UserEntity getCurrentUser(Principal principal){
+        return ((UserEntity)this.userDetailsService.loadUserByUsername(principal.getName()));
+
+    }
+
 }//end Class

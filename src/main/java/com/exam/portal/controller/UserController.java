@@ -23,11 +23,12 @@ public class UserController {
     public UserEntity create(@RequestBody UserEntity userEntity) throws Exception {
 
         userEntity.setProfile("default.png");
+        System.out.println("userEntity : "+userEntity);
 
         Set<UserRoleEntity> roles = new HashSet<>();
         RoleEntity role = new RoleEntity();
         role.setId(114L);
-        role.setRoleName("ADMIN");
+        role.setRoleName("NORMAL");
 
         UserRoleEntity userRole = new UserRoleEntity();
         System.out.println("Controller UserEntity : "+userEntity);
