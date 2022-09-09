@@ -3,10 +3,13 @@ package com.exam.portal.controller;
 import com.exam.portal.entity.RoleEntity;
 import com.exam.portal.entity.UserEntity;
 import com.exam.portal.entity.UserRoleEntity;
+import com.exam.portal.security.helper.UserFoundException;
 import com.exam.portal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.HashSet;
 import java.util.List;
@@ -64,6 +67,12 @@ public class UserController {
     public List<UserEntity> getAll(){
         List<UserEntity> userEntities =userService.findAll();
         return userEntities;
+    }
+
+    @ExceptionHandler(UserFoundException.class)
+    public ResponseEntity<?> exceptionHandler(UserFoundException ex){
+        ex.printStackTrace();
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
 
