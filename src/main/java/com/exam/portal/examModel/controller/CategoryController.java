@@ -2,7 +2,6 @@ package com.exam.portal.examModel.controller;
 
 import com.exam.portal.dto.StatusDTO;
 import com.exam.portal.examModel.entity.CategoryEntity;
-import com.exam.portal.examModel.entity.QuizEntity;
 import com.exam.portal.examModel.service.CategoryService;
 import com.exam.portal.examModel.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;

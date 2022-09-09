@@ -1,7 +1,6 @@
 package com.exam.portal.examModel.controller;
 
 import com.exam.portal.dto.StatusDTO;
-import com.exam.portal.examModel.entity.CategoryEntity;
 import com.exam.portal.examModel.entity.QuestionEntity;
 import com.exam.portal.examModel.entity.QuizEntity;
 import com.exam.portal.examModel.service.QuestionService;

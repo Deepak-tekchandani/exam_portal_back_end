@@ -1,6 +1,5 @@
 package com.exam.portal.examModel.serviceImpl;
 
-import com.exam.portal.examModel.entity.CategoryEntity;
 import com.exam.portal.examModel.entity.QuestionEntity;
 import com.exam.portal.examModel.entity.QuizEntity;
 import com.exam.portal.examModel.repository.QuestionRepository;
