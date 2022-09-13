@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -28,8 +27,8 @@ public class QuizController {
     private CategoryService categoryService;
 
     //add category
-    @PostMapping("/")
-    public ResponseEntity<StatusDTO> create(@ModelAttribute QuizEntity quizEntity){
+    @PostMapping("/create")
+    public ResponseEntity<StatusDTO> create(@RequestBody QuizEntity quizEntity){
         try {
 //            if(quizEntity.getCategoryEntity()!=null) {
 //                CategoryEntity categoryEntity = categoryService.getById(quizEntity.getCategoryEntity().getId());
@@ -46,7 +45,7 @@ public class QuizController {
 
     //update
     @PutMapping("/update")
-    public ResponseEntity<?>update(@ModelAttribute QuizEntity quizEntity){
+    public ResponseEntity<?>update(@RequestBody QuizEntity quizEntity){
         try{
             QuizEntity entity=quizService.getById(quizEntity.getId());
             if(entity!=null){

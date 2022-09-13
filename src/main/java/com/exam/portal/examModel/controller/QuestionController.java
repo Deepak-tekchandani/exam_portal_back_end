@@ -25,7 +25,7 @@ public class QuestionController {
 
     //add category
     @PostMapping("/")
-    public ResponseEntity<StatusDTO> create(@ModelAttribute QuestionEntity questionEntity){
+    public ResponseEntity<StatusDTO> create(@RequestBody QuestionEntity questionEntity){
         try {
 //            if(questionEntity.getQuizEntity()!=null) {
 //                QuizEntity quizEntity = quizService.getById(questionEntity.getQuizEntity().getId());
@@ -42,7 +42,7 @@ public class QuestionController {
 
     //update
     @PutMapping("/update")
-    public ResponseEntity<?>update(@ModelAttribute QuestionEntity questionEntity){
+    public ResponseEntity<?>update(@RequestBody QuestionEntity questionEntity){
         try{
             QuestionEntity entity=questionService.getById(questionEntity.getId());
             if(entity!=null){

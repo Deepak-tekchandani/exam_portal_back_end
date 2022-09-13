@@ -24,8 +24,8 @@ public class CategoryController {
     private QuizService quizService;
 
     //add category
-    @PostMapping("/")
-    public ResponseEntity<?> create(@ModelAttribute CategoryEntity categoryEntity){
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody CategoryEntity categoryEntity){
         try {
             CategoryEntity category = this.categoryService.create(categoryEntity);
             return ResponseEntity.ok(category);
@@ -37,7 +37,7 @@ public class CategoryController {
 
     //update
     @PutMapping("/update")
-    public ResponseEntity<?>update(@ModelAttribute CategoryEntity categoryEntity){
+    public ResponseEntity<?>update(@RequestBody CategoryEntity categoryEntity){
         try{
             CategoryEntity entity=categoryService.getById(categoryEntity.getId());
             if(entity!=null){
